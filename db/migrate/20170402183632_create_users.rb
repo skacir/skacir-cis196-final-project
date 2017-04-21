@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :name
       t.boolean :car
+      t.integer :number_of_seats
       t.string :email
       t.string :phone
       t.references :trips, foreign_key: true

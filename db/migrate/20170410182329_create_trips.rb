@@ -6,6 +6,8 @@ class CreateTrips < ActiveRecord::Migration[5.0]
       t.string :start_location
       t.string :end_location
       t.string :transit
+      t.boolean :car
+      t.integer :available_seats
       t.float :cost
 
       t.timestamps

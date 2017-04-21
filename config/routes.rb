@@ -6,6 +6,9 @@
   
   resources :trips
 
+  post 'trips/:id/users' => 'trips#add_user', as: :join_trip
+  delete 'trips/:id/users' => 'trips#delete_user', as: :leave_trip
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'

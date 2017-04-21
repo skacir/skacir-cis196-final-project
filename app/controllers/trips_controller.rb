@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :set_trip, only: [:show, :edit, :update, :destroy, :add_user, :delete_user]
 
   # GET /trips
   # GET /trips.json
@@ -58,6 +58,27 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # POST /trips/:id/users
+  def add_user
+    if @trip.users.include? current_user
+      redirect_to @trip, notice: 'User already in trip.'
+    else
+      @trip.users.append(current_user)
+      redirect_to @trip, notice: 'User was successfully added to the trip.'
+    end
+  end
+
+  # DELETE /trips/:id/users
+  def delete_user
+    user = TripsUser.find_by(user_id: current_user.id, trip_id: params[:id])
+    if user.nil?
+      redirect_to @trip, notice: 'User was not in the trip.'
+    else
+      user.destroy
+      redirect_to @trip, notice: 'User was successfully removed from the trip.'
     end
   end
 

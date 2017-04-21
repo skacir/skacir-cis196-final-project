@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20170420215913) do
     t.string   "start_location"
     t.string   "end_location"
     t.string   "transit"
+    t.boolean  "car"
+    t.integer  "available_seats"
     t.float    "cost"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
@@ -36,12 +38,13 @@ ActiveRecord::Schema.define(version: 20170420215913) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.boolean  "car"
+    t.integer  "number_of_seats"
     t.string   "email"
     t.string   "phone"
     t.integer  "trips_id"
     t.string   "password_hash"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["trips_id"], name: "index_users_on_trips_id"
   end
 
