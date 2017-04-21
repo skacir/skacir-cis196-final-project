@@ -1,7 +1,8 @@
   Rails.application.routes.draw do
+  root 'welcome#index'
+  
   resources :users do 
-    resources :cars
-  end
+    end
   
   resources :trips
 
