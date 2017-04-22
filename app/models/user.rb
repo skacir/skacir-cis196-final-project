@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :email, format: { with: /.@.\..*/, message: 'must be in the format username@website.tld' }
 
+  validates :number_of_seats, numericality: { greater_than: 0 }
   validates_presence_of :number_of_seats, :unless => :car
 
   has_many :trips, dependent: :destroy

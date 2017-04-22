@@ -43,7 +43,7 @@
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <% end %>
 
-<% if logged_in? %>
+<% if logged_in? && @trip.seats_available? %>
   <%= link_to 'Join', join_trip_path(@trip), method: :post %> |
   <%= link_to 'Leave', leave_trip_path(@trip), method: :delete %> |
 <% end %>

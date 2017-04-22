@@ -5,17 +5,23 @@
   <%= @user.name %>
 </p>
 
+
 <p>
   <strong>Car:</strong>
-  <%= @user.car %>
+
+  <% if @user.car %>
+    Yes
+    <strong>Number of Seats:</strong>
+    <%= @user.number_of_seats %>
+  <% else %>
+    No
+<% end %>
 </p>
 
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
-</p>
 
-<p>
   <strong>Phone:</strong>
   <%= @user.phone %>
 </p>
