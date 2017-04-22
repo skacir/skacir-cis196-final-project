@@ -56,6 +56,10 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:name, :car, :email, :phone, :password)
+    params.require(:user).permit(:name, :car, :number_of_seats, :email, :phone, :password)
+  end
+
+  helper_method def check_car_seats
+    user_params[:number_of_seats] = 0 unless user_params[:number_of_seats]
   end
 end

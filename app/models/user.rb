@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates :name, format: { with: /\A[A-Z].*/, message: 'must start with a capital letter' }
 
   validates :email, presence: true
+  validates :email, uniqueness: true
+  validates :email, format: { with: /.@.\..*/, message: 'must be in the format username@website.tld' }
+
+  validates_presence_of :number_of_seats, :unless => :car
 
   has_many :trips, dependent: :destroy
 
