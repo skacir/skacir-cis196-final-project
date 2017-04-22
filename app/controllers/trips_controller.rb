@@ -4,7 +4,8 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    @upcoming_trips = Trip.where('departure > ?', DateTime.now).order(departure: :asc)
+    @previous_trips = Trip.where('departure < ?', DateTime.now).order(departure: :desc)
   end
 
   # GET /trips/1
