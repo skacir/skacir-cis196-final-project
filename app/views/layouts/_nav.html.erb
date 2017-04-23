@@ -4,7 +4,8 @@
   <a class="nav-btn" href="/trips">Trips</a>
   <!-- Add link to user's show page and log out button if logged in -->
   <% if logged_in? %>
-    <a class="nav-btn"><%= link_to current_user.name, current_user %>
+    <a class="nav-btn"><%= link_to current_user.name, current_user %></a>
+    <a class="nav-btn"><%= link_to 'New Trip', new_trip_path %></a>
     <a class="nav-btn"><%= link_to 'Log out', logout_path, method: :delete %></a>
   <% else %>
     <a class="nav-btn" href="/login">Log in</a>

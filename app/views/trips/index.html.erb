@@ -20,7 +20,7 @@
   <tbody>
     <% @upcoming_trips.each do |trip| %>
       <tr>
-        <td><%= trip.user.name %></td>
+        <td><%= link_to trip.user.name, trip.user %></td>
         <td><%= trip.departure %></td>
         <td><%= trip.start_location %></td>
         <td><%= trip.end_location %></td>
@@ -56,7 +56,7 @@
   <tbody>
     <% @previous_trips.each do |trip| %>
       <tr>
-        <td><%= trip.user.name %></td>
+        <td><%= link_to trip.user.name, trip.user %></td>
         <td><%= trip.departure %></td>
         <td><%= trip.start_location %></td>
         <td><%= trip.end_location %></td>
@@ -73,7 +73,3 @@
 </table>
 
 <br>
-
-<% if logged_in? %>
-<%= link_to 'New Trip', new_trip_path %>
-<% end %>

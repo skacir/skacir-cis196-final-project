@@ -32,9 +32,12 @@
 
 <p>
   <strong>Participants:</strong>
+  <%= @trip.users.size %> / <%= @trip.available_seats %>
+
+  <br>
     <tr>
       <% @trip.users.each do |user| %>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, user %></td>
       <% end %>
     </tr>
 </p>
@@ -43,7 +46,7 @@
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <% end %>
 
-<% if logged_in? && @trip.seats_available? %>
+<% if logged_in? && @trip.seats_available? && @trip.trip_upcoming? %>
   <%= link_to 'Join', join_trip_path(@trip), method: :post %> |
   <%= link_to 'Leave', leave_trip_path(@trip), method: :delete %> |
 <% end %>

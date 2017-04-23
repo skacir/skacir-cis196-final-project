@@ -9,7 +9,11 @@ class Trip < ApplicationRecord
   validates :available_seats, numericality: { greater_than: -1 }
 
   def seats_available?
-    return true if !available_seats || available_seats > 0
+    return true if !available_seats || available_seats > users.size
     false
+  end
+
+  def trip_upcoming?
+    departure > DateTime.now
   end
 end

@@ -9,7 +9,7 @@
       <th>Car</th>
       <th>Email</th>
       <th>Phone</th>
-      <th>Trips</th>
+      <th>Newest Trip</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +21,8 @@
         <td><%= user.car %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
-        <td><%= user.trips.first.end_location unless user.trips.empty? %></td>
+        <td><%= user.trips.last.start_location unless user.trips.empty? %></td>
+        <td><%= user.trips.last.end_location unless user.trips.empty? %></td>
         <% if user == current_user %>
           <td><%= link_to 'Show', user %></td>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>

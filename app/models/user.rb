@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :email, format: { with: /.@.\..*/, message: 'must be in the format username@website.tld' }
 
-  validates :number_of_seats, numericality: { greater_than: 0 }
-  validates_presence_of :number_of_seats, :unless => :car
+  validates :number_of_seats, numericality: { greater_than: 0 }, :if => :car
+  validates_presence_of :number_of_seats, :if => :car
 
-  has_many :trips, dependent: :destroy
+  has_many :trips, dependent: :destroy #, :order => 'departure ASC'
 
   def password
     @password ||= Password.new(password_hash) unless password_hash.nil?

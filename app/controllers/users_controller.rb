@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :show_trips, :update, :destroy]
 
   # GET /users
   def index
@@ -8,6 +8,20 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    #rips = Trip.where('user = ? OR users.user = ?', @user.id, @user.id)
+    # @upcoming_trips = Trip.where('(user = ? OR users.user = ?) AND trip.departure > ?', @user.id, @user.id, DateTime.now).order(departure: :asc)
+    # prev_trips = TripsUser.where('user = ? AND trip.departure < ?', @user.id, DateTime.now).order(departure: :desc)
+    # prev_trips_ids = []
+    # prev_trips.each do |id|
+    #   prev_trips_ids ++ id[:trip]      
+    # end
+    # @previous_trips = Trip.find(prev_trips_ids)
+    @previous_trips = Trip.where('user = ? AND departure < ?', @user.id, DateTime.now).order(departure: :desc)
+    @upcoming_trips = Trip.where('user = ? AND departure > ?', @user.id, DateTime.now).order(departure: :asc)
+  end
+
+  def show_trips
+    render :show_trips
   end
 
   # GET /users/new
@@ -57,9 +71,5 @@ class UsersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def user_params
     params.require(:user).permit(:name, :car, :number_of_seats, :email, :phone, :password)
-  end
-
-  helper_method def check_car_seats
-    user_params[:number_of_seats] = 0 unless user_params[:number_of_seats]
   end
 end
