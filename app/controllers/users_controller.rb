@@ -16,8 +16,10 @@ class UsersController < ApplicationController
     #   prev_trips_ids ++ id[:trip]      
     # end
     # @previous_trips = Trip.find(prev_trips_ids)
-    @previous_trips = Trip.where('user = ? AND departure < ?', @user.id, DateTime.now).order(departure: :desc)
-    @upcoming_trips = Trip.where('user = ? AND departure > ?', @user.id, DateTime.now).order(departure: :asc)
+    # prev_trips = Trip.where('departure < ?', DateTime.now).order(departure: :desc)
+    # prev_trips.keep_if{ |trip| TripsUser.exists?('trip = ? AND user = ?', trip.id, @user.id)}
+    # @previous_trips = prev_trips
+    # @upcoming_trips = Trip.where('departure > ?', DateTime.now).order(departure: :asc)
   end
 
   def show_trips
