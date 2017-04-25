@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @trip.user.name %>
+  <%=link_to @trip.user.name, @trip.user, class: 'btn btn-default btn-xs' %>
 </p>
 
 <p>
@@ -23,6 +23,10 @@
 <p>
   <strong>Transit:</strong>
   <%= @trip.transit %>
+  <% if @trip.driver_id %>
+    <strong>Driver: </strong>
+    <%= link_to @driver.name, @driver, class: 'btn btn-default btn-xs' %>
+  <% end %>
 </p>
 
 <p>
@@ -37,7 +41,7 @@
   <br>
     <tr>
       <% @trip.users.each do |user| %>
-        <td><%= link_to user.name, user %></td>
+        <td><%= link_to user.name, user, class: 'btn btn-default btn-xs' %></td>
       <% end %>
     </tr>
 </p>

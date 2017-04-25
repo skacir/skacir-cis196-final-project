@@ -11,6 +11,7 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @driver = User.find(@trip.driver_id) if @trip.driver_id
   end
 
   # GET /trips/new
@@ -20,6 +21,7 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
+    @participants_with_cars = User.where(car: true, id: TripsUser.select("user_id").where(trip_id: @trip.id))
   end
 
   # POST /trips
@@ -91,6 +93,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:user_id, :departure, :available_seats, :start_location, :end_location, :connection?, :transit, :cost)
+      params.require(:trip).permit(:user_id, :driver_id, :departure, :available_seats, :start_location, :end_location, :connection?, :transit, :cost)
     end
 end
