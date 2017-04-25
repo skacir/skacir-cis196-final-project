@@ -5,8 +5,8 @@
   <!-- Add link to user's show page and log out button if logged in -->
   <% if logged_in? %>
     <a><%= link_to 'Log out', logout_path, method: :delete, class: 'btn btn-danger btn-s pull-right'  %></a>
-    <a><%= link_to current_user.name, current_user, class: 'btn btn-info btn-s pull-right' %></a>
-    <a class="nav-btn"><%= link_to 'New Trip', new_trip_path, class: 'btn pull-right' %></a>
+    <a><%= link_to current_user.name, current_user, class: 'btn btn-primary btn-s pull-right' %></a>
+    <a class="nav-btn"><%= link_to 'New Trip', new_trip_path, class: 'btn btn-default pull-right' %></a>
   <% else %>
     <a class='btn btn-success btn-s pull-right' href="/users/new">Sign up</a>
     <a class='btn btn-primary btn-s pull-right' href="/login">Log in</a>
