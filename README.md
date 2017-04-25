@@ -9,3 +9,6 @@ It is designed to be a student transit web app. The ideal use case is a student 
   * add driver to trips
   * add messaging portion so drivers can be vetted and/or trip-goers can communicate amongst themselves
   * make a nice UI
+
+[//] # "<% if @trip.transit == 'car' && @trip.user == current_user && user.car %><%= link_to 'Make Driver', trip(@trip), method: :patch, class: 'btn btn-success btn-xs' %><% end %>"
+        

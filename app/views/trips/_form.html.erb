@@ -31,6 +31,13 @@
     <%= f.select :transit, ['Walk', 'Car', 'Train', 'Bus']%>
   </div>
 
+  <% if trip.transit == 'Car' && @participants_with_cars.size > 0%>
+    <div class="field">
+      <%= f.label :driver_id %>
+      <%= f.select :driver_id, @participants_with_cars.map {|p| [p.name, p.id]}%>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :available_seats %>
     <%= f.number_field :available_seats %>
