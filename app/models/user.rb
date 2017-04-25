@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
+
+  def get_all_trips
+    Trip.where(id: TripsUser.select("trip_id").where(user_id: id))
+  end
 end

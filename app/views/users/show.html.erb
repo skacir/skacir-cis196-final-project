@@ -36,34 +36,7 @@
   </table>
 </p>
 
-<p>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Departure Time</th>
-        <th>Trip</th>
-        <th>Transit</th>
-      </tr>
-    </thead>
-          
-    <tbody>
-      <% @user.trips.each do |trip| %>  
-        <tr>
-          <td><%= trip.departure %></td>
-          <td><%= trip.start_location %>
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-            <%= trip.end_location %></td>
-          <td><%= trip.transit %></td>
-          <% if @user == current_user %>
-            <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
-              <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
-              <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</p>
+<%= render 'show_trips' %>
 
 <% if @user == current_user %>
   <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default btn-xs' %> |
