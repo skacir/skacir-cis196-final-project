@@ -37,6 +37,9 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    # @user
+    # user_params[:car] ? @user = Driver.new(user_params) : @user = User.new(user_params)
+
     @user = User.new(user_params)
 
     if @user.save
