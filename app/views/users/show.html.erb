@@ -1,63 +1,68 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <h1><%= @user.name %></h1>
 </p>
 
 
 <p>
-  <strong>Car:</strong>
+  <h4>
+    <strong>Car:</strong>
 
-  <% if @user.car %>
-    Yes
-    <strong>Number of Seats:</strong>
-    <%= @user.number_of_seats %>
-  <% else %>
-    No
-<% end %>
+    <% if @user.car %>
+      Yes
+      <strong>Number of Seats:</strong>
+      <%= @user.number_of_seats %>
+    <% else %>
+      No
+    <% end %>
+  </h4>
 </p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-
-  <strong>Phone:</strong>
-  <%= @user.phone %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><%=@user.phone%></th>
+        <th><%=@user.email%></th>
+      </tr>
+    </tbody>
+  </table>
 </p>
 
 <p>
-  <strong>Trips:</strong>
-    <div id="multiColumn">
-
-      <table class='table'>
-        <thead>
-          <tr>
-            <th>Departure Time</th>
-            <th>Start location</th>
-            <th>End location</th>
-            <th>Transit</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Departure Time</th>
+        <th>Trip</th>
+        <th>Transit</th>
+      </tr>
+    </thead>
           
-        <tbody>
-          <% @user.trips.each do |trip| %>  
-            <tr>
-              <td><%= trip.departure %></td>
-              <td><%= trip.start_location %></td>
-              <td><%= trip.end_location %></td>
-              <td><%= trip.transit %></td>
-              <% if @user == current_user %>
-                <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
-                  <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-default btn-xs' %>
-                  <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
-              <% end %>
-            </tr>
+    <tbody>
+      <% @user.trips.each do |trip| %>  
+        <tr>
+          <td><%= trip.departure %></td>
+          <td><%= trip.start_location %>
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            <%= trip.end_location %></td>
+          <td><%= trip.transit %></td>
+          <% if @user == current_user %>
+            <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
+              <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
+              <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
           <% end %>
-        </tbody>
-      </table>
-    </div>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </p>
 
 <% if @user == current_user %>

@@ -22,7 +22,7 @@
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
         <td><%= user.trips.last.start_location unless user.trips.empty? %>
-            ->
+            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             <%= user.trips.last.end_location unless user.trips.empty? %></td>
         <% if user == current_user %>
           <td><%= link_to 'Show', user, class: 'btn btn-success btn-xs' %>
