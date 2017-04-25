@@ -43,12 +43,12 @@
 </p>
 
 <% unless @trip.user != current_user %>
-<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Edit', edit_trip_path(@trip), class: 'btn btn-warning btn-xs' %> |
 <% end %>
 
 <% if logged_in? && @trip.seats_available? && @trip.trip_upcoming? %>
-  <%= link_to 'Join', join_trip_path(@trip), method: :post %> |
-  <%= link_to 'Leave', leave_trip_path(@trip), method: :delete %> |
+  <%= link_to 'Join', join_trip_path(@trip), method: :post, class: 'btn btn-success btn-xs' %> |
+  <%= link_to 'Leave', leave_trip_path(@trip), method: :delete, class: 'btn btn-danger btn-xs' %> |
 <% end %>
 
-<%= link_to 'Back', trips_path %>
+<%= link_to 'Back', trips_path, class: 'btn btn-default btn-xs' %>

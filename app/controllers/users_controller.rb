@@ -8,16 +8,9 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    #rips = Trip.where('user = ? OR users.user = ?', @user.id, @user.id)
-    # @upcoming_trips = Trip.where('(user = ? OR users.user = ?) AND trip.departure > ?', @user.id, @user.id, DateTime.now).order(departure: :asc)
-    # prev_trips = TripsUser.where('user = ? AND trip.departure < ?', @user.id, DateTime.now).order(departure: :desc)
-    # prev_trips_ids = []
-    # prev_trips.each do |id|
-    #   prev_trips_ids ++ id[:trip]      
-    # end
-    # @previous_trips = Trip.find(prev_trips_ids)
-    @previous_trips = Trip.where('user = ? AND departure < ?', @user.id, DateTime.now).order(departure: :desc)
-    @upcoming_trips = Trip.where('user = ? AND departure > ?', @user.id, DateTime.now).order(departure: :asc)
+    trips = @user.get_all_trips
+    @upcoming_trips = trips.where('departure > ?', DateTime.now).order(departure: :asc)
+    @previous_trips = trips.where('departure < ?', DateTime.now).order(departure: :desc)
   end
 
   def show_trips
@@ -35,6 +28,9 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    # @user
+    # user_params[:car] ? @user = Driver.new(user_params) : @user = User.new(user_params)
+
     @user = User.new(user_params)
 
     if @user.save

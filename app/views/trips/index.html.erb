@@ -4,7 +4,7 @@
 
 <h2>Upcoming Trips:</h2>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>User</th>
@@ -20,17 +20,18 @@
   <tbody>
     <% @upcoming_trips.each do |trip| %>
       <tr>
-        <td><%= link_to trip.user.name, trip.user %></td>
+        <td><%= link_to trip.user.name, trip.user, class: 'btn btn-default btn-xs' %></td>
         <td><%= trip.departure %></td>
         <td><%= trip.start_location %></td>
         <td><%= trip.end_location %></td>
         <td><%= trip.transit %></td>
         <td><%= trip.cost %></td>
-        <td><%= link_to 'Show', trip %></td>
-        <% if trip.user == current_user %>
-          <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
+          <% if trip.user == current_user %>
+            <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
+            <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +41,7 @@
 
 <h2>Previous Trips:</h2>
 
-<table>
+<table class='table'>
   <thead>
     <tr>
       <th>User</th>
@@ -56,17 +57,18 @@
   <tbody>
     <% @previous_trips.each do |trip| %>
       <tr>
-        <td><%= link_to trip.user.name, trip.user %></td>
+        <td><%= link_to trip.user.name, trip.user, class: 'btn btn-default btn-xs' %></td>
         <td><%= trip.departure %></td>
         <td><%= trip.start_location %></td>
         <td><%= trip.end_location %></td>
         <td><%= trip.transit %></td>
         <td><%= trip.cost %></td>
-        <td><%= link_to 'Show', trip %></td>
-        <% if trip.user == current_user %>
-          <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-          <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
+          <% if trip.user == current_user %>
+            <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
+            <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
