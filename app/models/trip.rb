@@ -17,10 +17,6 @@ class Trip < ApplicationRecord
     departure > DateTime.now
   end
 
-  def add_driver(driver_to_add)
-    car ? driver = driver_to_add : self.error.add('Cannot add driver - trip is not by car')
-  end
-
   def future_trip?
     departure > DateTime.now
   end

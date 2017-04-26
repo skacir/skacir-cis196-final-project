@@ -21,9 +21,11 @@
         <td><%= user.car %></td>
         <td><%= user.email %></td>
         <td><%= user.phone %></td>
-        <td><%= user.trips.last.start_location unless user.trips.empty? %>
-            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-            <%= user.trips.last.end_location unless user.trips.empty? %></td>
+        <% unless user.trips.empty? %>
+          <td><%= user.trips.last.start_location unless user.trips.empty? %>
+              <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+              <%= user.trips.last.end_location unless user.trips.empty? %></td>
+          <% end %>
         <% if user == current_user %>
           <td><%= link_to 'Show', user, class: 'btn btn-success btn-xs' %>
             <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning btn-xs' %>

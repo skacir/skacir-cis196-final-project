@@ -2,76 +2,8 @@
 
 <h1>Trips</h1>
 
-<h2>Upcoming Trips:</h2>
+<h3>Upcoming Trips:</h3>
+<%= render 'show_trips', trips: @upcoming_trips %>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Departure</th>
-      <th>Start location</th>
-      <th>End location</th>
-      <th>Transit</th>
-      <th>Cost</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @upcoming_trips.each do |trip| %>
-      <tr>
-        <td><%= link_to trip.user.name, trip.user, class: 'btn btn-default btn-xs' %></td>
-        <td><%= trip.departure %></td>
-        <td><%= trip.start_location %></td>
-        <td><%= trip.end_location %></td>
-        <td><%= trip.transit %></td>
-        <td><%= trip.cost %></td>
-        <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
-          <% if trip.user == current_user %>
-            <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
-            <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<h2>Previous Trips:</h2>
-
-<table class='table'>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Departure</th>
-      <th>Start location</th>
-      <th>End location</th>
-      <th>Transit</th>
-      <th>Cost</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @previous_trips.each do |trip| %>
-      <tr>
-        <td><%= link_to trip.user.name, trip.user, class: 'btn btn-default btn-xs' %></td>
-        <td><%= trip.departure %></td>
-        <td><%= trip.start_location %></td>
-        <td><%= trip.end_location %></td>
-        <td><%= trip.transit %></td>
-        <td><%= trip.cost %></td>
-        <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
-          <% if trip.user == current_user %>
-            <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
-            <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<h3>Previous Trips:</h3>
+<%= render 'show_trips', trips: @previous_trips %>

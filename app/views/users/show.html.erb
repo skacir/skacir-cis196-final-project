@@ -36,7 +36,11 @@
   </table>
 </p>
 
-<%= render 'show_trips' %>
+<h3>Upcoming Trips:</h3>
+<%= render 'trips/show_trips', trips: @upcoming_trips %>
+
+<h3>Previous Trips:</h3>
+<%= render 'trips/show_trips', trips: @previous_trips %>
 
 <% if @user == current_user %>
   <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default btn-xs' %> |
