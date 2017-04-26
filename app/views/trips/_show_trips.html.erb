@@ -17,9 +17,9 @@
             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             <%= trip.end_location %></td>
           <td><%= trip.transit %></td>
-          <td><%= link_to 'Show', trip, class: 'btn btn-success btn-xs' %>
+          <td><%= link_to 'Show', trip, class: 'btn btn-default btn-xs' %>
           <% if trip.user == current_user %>
-              <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-warning btn-xs' %>
+              <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-default btn-xs' %>
               <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
           <% end %>
         </tr>

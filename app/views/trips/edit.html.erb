@@ -1,6 +1,11 @@
-<h1>Editing Trip</h1>
+<div class="col-md-4 col-md-offset-4">
 
-<%= render 'form', trip: @trip %>
+  <h1 class='text-center'>Editing Trip</h1>
 
-<%= link_to 'Show', @trip %> |
-<%= link_to 'Back', trips_path %>
+  <%= render 'form', trip: @trip %>
+
+  <%= link_to 'Back to all trips', trips_path, class: 'pull-right' %>
+  <a class='pull-right'>  |  </a>
+  <%= link_to 'Show Trip', @trip, class: 'pull-right' %>
+
+</div>

@@ -1,7 +1,9 @@
 <h1 class="welcome-banner">Welcome to TripTrap!</h1>
 <!-- TODO: Greet the current user! -->
 <% if logged_in? %>
-  Hi <%= current_user.name %>
+  <h2>Hi <%= current_user.name %></h2>
+  <h3>Upcoming Trips:</h3>
+  <%= render 'trips/show_trips', trips: @upcoming_trips %>
 <% else %>
   <% link_to 'Log In', login_path %>
 <% end %>

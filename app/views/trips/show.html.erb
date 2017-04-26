@@ -1,58 +1,62 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-4 col-md-offset-4 text-center">
 
-<p>
-  <strong>User:</strong>
-  <%=link_to @trip.user.name, @trip.user, class: 'btn btn-default btn-xs' %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Departure:</strong>
-  <%= @trip.departure %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%=link_to @trip.user.name, @trip.user, class: 'btn btn-default btn-xs' %>
+  </p>
 
-<p>
-  <strong>Start location:</strong>
-  <%= @trip.start_location %>
-</p>
+  <p>
+    <strong>Departure:</strong>
+    <%= @trip.departure %>
+  </p>
 
-<p>
-  <strong>End location:</strong>
-  <%= @trip.end_location %>
-</p>
+  <p>
+    <strong>Start location:</strong>
+    <%= @trip.start_location %>
+  </p>
 
-<p>
-  <strong>Transit:</strong>
-  <%= @trip.transit %>
-  <% if @trip.driver_id %>
-    <strong>Driver: </strong>
-    <%= link_to @driver.name, @driver, class: 'btn btn-default btn-xs' %>
+  <p>
+    <strong>End location:</strong>
+    <%= @trip.end_location %>
+  </p>
+
+  <p>
+    <strong>Transit:</strong>
+    <%= @trip.transit %>
+    <% if @trip.driver_id %>
+      <strong>Driver: </strong>
+      <%= link_to @driver.name, @driver, class: 'btn btn-default btn-xs' %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Cost:</strong>
+    <%= @trip.cost %>
+  </p>
+
+  <p>
+    <strong>Participants:</strong>
+    <%= @trip.users.size %> / <%= @trip.available_seats %>
+
+    <br>
+      <tr>
+        <% @trip.users.each do |user| %>
+          <td><%= link_to user.name, user, class: 'btn btn-default btn-xs' %></td>
+        <% end %>
+      </tr>
+  </p>
+
+  <% unless @trip.user != current_user %>
+    <%= link_to 'Edit', edit_trip_path(@trip), class: 'btn btn-default btn-xs' %> |
   <% end %>
-</p>
 
-<p>
-  <strong>Cost:</strong>
-  <%= @trip.cost %>
-</p>
+  <% if logged_in? && @trip.seats_available? && @trip.trip_upcoming? %>
+    <%= link_to 'Join', join_trip_path(@trip), method: :post, class: 'btn btn-success btn-xs' %> |
+    <%= link_to 'Leave', leave_trip_path(@trip), method: :delete, class: 'btn btn-danger btn-xs' %> |
+  <% end %>
 
-<p>
-  <strong>Participants:</strong>
-  <%= @trip.users.size %> / <%= @trip.available_seats %>
+  <%= link_to 'Back', trips_path, class: 'btn btn-default btn-xs' %>
 
-  <br>
-    <tr>
-      <% @trip.users.each do |user| %>
-        <td><%= link_to user.name, user, class: 'btn btn-default btn-xs' %></td>
-      <% end %>
-    </tr>
-</p>
-
-<% unless @trip.user != current_user %>
-<%= link_to 'Edit', edit_trip_path(@trip), class: 'btn btn-warning btn-xs' %> |
-<% end %>
-
-<% if logged_in? && @trip.seats_available? && @trip.trip_upcoming? %>
-  <%= link_to 'Join', join_trip_path(@trip), method: :post, class: 'btn btn-success btn-xs' %> |
-  <%= link_to 'Leave', leave_trip_path(@trip), method: :delete, class: 'btn btn-danger btn-xs' %> |
-<% end %>
-
-<%= link_to 'Back', trips_path, class: 'btn btn-default btn-xs' %>
+</div>

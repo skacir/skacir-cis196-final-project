@@ -11,41 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class='form-group'>
     <%= f.label :departure %>
     <%= f.datetime_select :departure %>
   </div>
 
-  <div class="field">
+  <div class='form-group'>
     <%= f.label :start_location %>
     <%= f.text_field :start_location %>
   </div>
 
-  <div class="field">
+  <div class='form-group'>
     <%= f.label :end_location %>
     <%= f.text_field :end_location %>
   </div>
 
-  <div class="field">
+  <div class='form-inline'>
     <%= f.label :transit %>
     <%= f.select :transit, ['Walk', 'Car', 'Train', 'Bus']%>
-  </div>
 
   <% if trip.transit == 'Car' && @participants_with_cars.size > 0%>
-    <div class="field">
       <%= f.label :driver_id %>
       <%= f.select :driver_id, @participants_with_cars.map {|p| [p.name, p.id]}%>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class='form-group'>
     <%= f.label :available_seats %>
     <%= f.number_field :available_seats %>
   </div>
 
-  <div class="field">
-    <%= f.label :cost %>
-    <%= f.text_field :cost %>
+  <div class='form-group'>
+    <strong> <%= f.label :cost %> (per person) </strong>
+    $ <%= f.text_field :cost %>
   </div>
 
   <div class="actions">

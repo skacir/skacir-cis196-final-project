@@ -10,7 +10,7 @@ class Trip < ApplicationRecord
 
   validates :driver_id, numericality: { only_integer: true }, :if => :driver_id
 
-  validate :validate_driver_id
+  validate :validate_driver_id, :if => :driver_id
 
   def seats_available?
     return true if !available_seats || available_seats > users.size
