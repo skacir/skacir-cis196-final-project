@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.0.2'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-gem 'pg', '~> 0.18'
+gem 'postgresql'
 
 # Use Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
