@@ -1,21 +1,23 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-
   include BCrypt
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :name, length: { minimum: 2 }
-  validates :name, format: { with: /\A[A-Z].*/, message: 'must start with a capital letter' }
+  validates :name, format: { with: /\A[A-Z].*/,
+                             message: 'must start with a capital letter' }
 
   validates :email, presence: true
   validates :email, uniqueness: true
-  validates :email, format: { with: /.@.\..*/, message: 'must be in the format username@website.tld' }
+  validates :email, format: { with: /.@.\..*/,
+                              message:
+                                'must be in the format username@website.tld' }
 
-  validates :number_of_seats, numericality: { greater_than: 0 }, :if => :car
-  validates_presence_of :number_of_seats, :if => :car
+  validates :number_of_seats, numericality: { greater_than: 0 }, if: :car
+  validates_presence_of :number_of_seats, if: :car
 
-  has_many :trips, dependent: :destroy #, :order => 'departure ASC'
+  has_many :trips, dependent: :destroy
 
   def password
     @password ||= Password.new(password_hash) unless password_hash.nil?
@@ -26,7 +28,7 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def get_all_trips
-    Trip.where(id: TripsUser.select("trip_id").where(user_id: id))
+  def all_trips
+    Trip.where(id: TripsUser.select('trip_id').where(user_id: id))
   end
 end

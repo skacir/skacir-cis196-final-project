@@ -1,11 +1,14 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy, :add_user, :delete_user]
+  before_action :set_trip,
+                only: [:show, :edit, :update, :destroy, :add_user, :delete_user]
 
   # GET /trips
   # GET /trips.json
   def index
-    @upcoming_trips = Trip.where('departure > ?', DateTime.now).order(departure: :asc)
-    @previous_trips = Trip.where('departure < ?', DateTime.now).order(departure: :desc)
+    @upcoming_trips =
+      Trip.where('departure > ?', DateTime.now).order(departure: :asc)
+    @previous_trips =
+      Trip.where('departure < ?', DateTime.now).order(departure: :desc)
   end
 
   # GET /trips/1
@@ -21,7 +24,10 @@ class TripsController < ApplicationController
 
   # GET /trips/1/edit
   def edit
-    @participants_with_cars = User.where(car: true, id: TripsUser.select("user_id").where(trip_id: @trip.id))
+    @participants_with_cars =
+      User.where(
+        car: true, id: TripsUser.select('user_id').where(trip_id: @trip.id)
+      )
   end
 
   # POST /trips
@@ -86,13 +92,17 @@ class TripsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_trip
-      @trip = Trip.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def trip_params
-      params.require(:trip).permit(:user_id, :driver_id, :departure, :available_seats, :start_location, :end_location, :connection?, :transit, :cost)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_trip
+    @trip = Trip.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def trip_params
+    params.require(:trip).permit(
+      :user_id, :driver_id, :departure, :available_seats, :start_location,
+      :end_location, :connection?, :transit, :cost
+    )
+  end
 end

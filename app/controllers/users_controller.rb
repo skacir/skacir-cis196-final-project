@@ -8,9 +8,11 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    trips = @user.get_all_trips
-    @upcoming_trips = trips.where('departure > ?', DateTime.now).order(departure: :asc)
-    @previous_trips = trips.where('departure < ?', DateTime.now).order(departure: :desc)
+    trips = @user.all_trips
+    @upcoming_trips =
+      trips.where('departure > ?', DateTime.now).order(departure: :asc)
+    @previous_trips =
+      trips.where('departure < ?', DateTime.now).order(departure: :desc)
   end
 
   def show_trips
@@ -28,9 +30,6 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    # @user
-    # user_params[:car] ? @user = Driver.new(user_params) : @user = User.new(user_params)
-
     @user = User.new(user_params)
 
     if @user.save
@@ -66,6 +65,8 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:name, :car, :number_of_seats, :email, :phone, :password)
+    params.require(
+      :user
+    ).permit(:name, :car, :number_of_seats, :email, :phone, :password)
   end
 end

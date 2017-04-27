@@ -8,9 +8,9 @@ class Trip < ApplicationRecord
 
   validates :available_seats, numericality: { greater_than: -1 }
 
-  validates :driver_id, numericality: { only_integer: true }, :if => :driver_id
+  validates :driver_id, numericality: { only_integer: true }, if: :driver_id
 
-  validate :validate_driver_id, :if => :driver_id
+  validate :validate_driver_id, if: :driver_id
 
   def seats_available?
     return true if !available_seats || available_seats > users.size
@@ -28,7 +28,8 @@ class Trip < ApplicationRecord
   private
 
   def validate_driver_id
-    errors.add(:driver_id, "is invalid") unless User.exists?(self.driver_id)
-    errors.add(:driver_id, "does not have a car") unless User.exists?(id: driver_id, car: true)
+    errors.add(:driver_id, 'is invalid') unless User.exists?(driver_id)
+    errors.add(:driver_id, 'does not have a car') unless
+      User.exists?(id: driver_id, car: true)
   end
 end
