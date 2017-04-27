@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.integer :number_of_seats
       t.string :email
       t.string :phone
-      t.references :trips, foreign_key: true
+      t.references :trips
       t.string :password_hash
 
       t.timestamps
