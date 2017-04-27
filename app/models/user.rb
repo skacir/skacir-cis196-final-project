@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :email, uniqueness: true
-  validates :email, format: { with: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+  validates :email, format: { with: /.@.+\..*/,
                               message:
                                 'must be in the format username@website.tld' }
 
