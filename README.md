@@ -1,6 +1,6 @@
 # skacir-cis196-final-project
 
-See it live at https://triptrap.herokuapps.com 
+See it live at https://triptrap.herokuapp.com 
 
 This project was created as the final project for the Spring 2017 CIS 196 Ruby on Rails course taught by Justin Kim at UPenn. It currently uses only Rails built in gems.
 
