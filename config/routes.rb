@@ -1,9 +1,7 @@
-  Rails.application.routes.draw do
+Rails.application.routes.draw do
   root 'welcome#index'
-  
-  resources :users do 
-    end
-  
+
+  resources :users
   resources :trips
 
   post 'trips/:id/users' => 'trips#add_user', as: :join_trip
