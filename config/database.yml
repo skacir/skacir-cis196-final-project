@@ -1,5 +1,0 @@
-development:
-  adapter: postgresql
-  host: localhost
-  username: skacir@seas.upenn.edu
-  database: app-dev
