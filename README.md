@@ -7,4 +7,4 @@ It is designed to be a student transit web app. The ideal use case is a student 
 
 * To-do:
   * add messaging portion so drivers can be vetted and/or trip-goers can communicate amongst themselves
-  * make a nice UI
+  * add groups so trips can be made available only to members of the same group
